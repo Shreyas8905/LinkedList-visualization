@@ -99,14 +99,14 @@ function displayList() {
         if (node.next) {
             const arrow = document.createElement("div");
             arrow.className = "arrow next-arrow";
-            arrow.innerHTML = "↓";  // Stack arrows vertically for doubly linked list
+            arrow.innerHTML = "→";  // Stack arrows vertically for doubly linked list
             listOutput.appendChild(arrow);
         }
 
         if (node.prev && index > 0) {  
             const prevArrow = document.createElement("div");
             prevArrow.className = "arrow prev-arrow";
-            prevArrow.innerHTML = "↑"; 
+            prevArrow.innerHTML = "←"; 
             listOutput.appendChild(prevArrow);
         }
     });
