@@ -174,6 +174,37 @@ function removeNode() {
     displayList();
 }
 
+// function displayList() {
+//     const listOutput = document.getElementById("listOutput");
+//     listOutput.innerHTML = "";
+//     const nodes = listInstance.getNodes();
+
+//     nodes.forEach((node, index) => {
+//         const nodeDiv = document.createElement("div");
+//         nodeDiv.className = "node";
+//         nodeDiv.innerHTML = `
+//             <input type="text" value="${node.value}" onchange="updateNodeValue(this, '${node.value}')">
+//             <div class="pointer">Next: ${node.next ? node.next.value : 'null'}</div>
+//             ${node.prev !== undefined ? `<div class="pointer">Prev: ${node.prev ? node.prev.value : 'null'}</div>` : ''}
+//         `;
+//         listOutput.appendChild(nodeDiv);
+
+//         // Add arrows
+//         if (node.next) {
+//             const arrow = document.createElement("div");
+//             arrow.className = "arrow next-arrow";
+//             arrow.innerHTML = "→";  // Stack arrows vertically for doubly linked list
+//             listOutput.appendChild(arrow);
+//         }
+
+//         if (node.prev && index > 0) {  
+//             const prevArrow = document.createElement("div");
+//             prevArrow.className = "arrow prev-arrow";
+//             prevArrow.innerHTML = "←"; 
+//             listOutput.appendChild(prevArrow);
+//         }
+//     });
+// }
 function displayList() {
     const listOutput = document.getElementById("listOutput");
     listOutput.innerHTML = "";
@@ -190,21 +221,22 @@ function displayList() {
         listOutput.appendChild(nodeDiv);
 
         // Add arrows
-        if (node.next) {
+        if (node.next && node.next !== listInstance.head) {
             const arrow = document.createElement("div");
             arrow.className = "arrow next-arrow";
-            arrow.innerHTML = "→";  // Stack arrows vertically for doubly linked list
+            arrow.innerHTML = "→";
             listOutput.appendChild(arrow);
         }
 
-        if (node.prev && index > 0) {  
+        if (node.prev && node.prev !== listInstance.head && index > 0) {
             const prevArrow = document.createElement("div");
             prevArrow.className = "arrow prev-arrow";
-            prevArrow.innerHTML = "←"; 
+            prevArrow.innerHTML = "←";
             listOutput.appendChild(prevArrow);
         }
     });
 }
+
 
 function updateNodeValue(input, oldValue) {
     let node = listInstance.head;
