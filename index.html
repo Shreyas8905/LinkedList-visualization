@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Linked List Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Interactive Linked List Explorer</h1>
+    <div class="controls">
+        <select id="listType" onchange="updateListType()">
+            <option value="singly">Singly Linked List</option>
+            <option value="doubly">Doubly Linked List</option>
+            <option value="circularSingly">Circular Singly Linked List</option>
+            <option value="circularDoubly">Circular Doubly Linked List</option>
+        </select>
+        <input type="text" id="nodeValue" placeholder="Node Value">
+        <button onclick="addNode()">Add Node</button>
+        <button onclick="removeNode()">Remove Last Node</button>
+    </div>
+    <div id="listOutput" class="list-container"></div>
+    <div id="algorithmOutput" class="algorithm-container"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
