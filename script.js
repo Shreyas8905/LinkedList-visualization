@@ -53,7 +53,101 @@ class DoublyLinkedList {
     }
 }
 
-// Class definitions for Circular Linked Lists remain the same as before
+class CircularSinglyLinkedList {
+    constructor() { this.head = null; }
+
+    add(value) {
+        const newNode = { value, next: null };
+        if (!this.head) {
+            this.head = newNode;
+            newNode.next = this.head;  // Circular reference
+        } else {
+            let current = this.head;
+            while (current.next !== this.head) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.next = this.head;  // Circular reference
+        }
+    }
+
+    remove() {
+        if (!this.head) return;
+        if (this.head.next === this.head) {  // Only one node
+            this.head = null;
+        } else {
+            let current = this.head;
+            while (current.next !== this.head) {
+                current = current.next;
+            }
+            // Point the last node to the head, removing the circular link of the node to be deleted
+            current.next = this.head.next;
+            this.head = this.head.next;  // Move head to next node
+        }
+    }
+
+    getNodes() {
+        let nodes = [];
+        if (this.head) {
+            let current = this.head;
+            do {
+                nodes.push(current);
+                current = current.next;
+            } while (current !== this.head);  // Stop when we circle back to head
+        }
+        return nodes;
+    }
+}
+
+class CircularDoublyLinkedList {
+    constructor() { this.head = null; }
+
+    add(value) {
+        const newNode = { value, next: null, prev: null };
+        if (!this.head) {
+            this.head = newNode;
+            newNode.next = this.head;
+            newNode.prev = this.head;  // Circular reference
+        } else {
+            let current = this.head;
+            while (current.next !== this.head) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.prev = current;
+            newNode.next = this.head;
+            this.head.prev = newNode;  // Circular reference
+        }
+    }
+
+    remove() {
+        if (!this.head) return;
+        if (this.head.next === this.head) {  // Only one node
+            this.head = null;
+        } else {
+            let current = this.head;
+            while (current.next !== this.head) {
+                current = current.next;
+            }
+            // Remove the node
+            current.prev.next = this.head;
+            this.head.prev = current.prev;
+        }
+    }
+
+    getNodes() {
+        let nodes = [];
+        if (this.head) {
+            let current = this.head;
+            do {
+                nodes.push(current);
+                current = current.next;
+            } while (current !== this.head);  // Stop when we circle back to head
+        }
+        return nodes;
+    }
+}
+
 
 let listInstance;
 updateListType();
